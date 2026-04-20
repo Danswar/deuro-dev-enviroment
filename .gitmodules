@@ -1,4 +1,0 @@
-[submodule "smartContracts"]
-	path = smartContracts
-	url = https://github.com/d-EURO/smartContracts.git
-	branch = develop
