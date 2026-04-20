@@ -4,7 +4,11 @@ import "@nomicfoundation/hardhat-toolbox";
 
 dotenv.config();
 
-const forkUrl = process.env.RPC_URL_MAINNET;
+/** Mainnet HTTPS RPC used only when starting `hardhat node` (fork source). */
+const forkUrl =
+	process.env.FORK_URL?.trim() ||
+	process.env.RPC_URL_MAINNET?.trim() ||
+	undefined;
 
 const config: HardhatUserConfig = {
 	solidity: "0.8.28",

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3040",
+    "dev:with-chain": "concurrently -k -n chain,web -c blue,green \"npm run chain\" \"npm run dev\"",
     "build": "next build",
     "start": "next start -p 3040",
     "lint": "eslint",
@@ -38,6 +39,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "chai": "^4",
+    "concurrently": "^9.2.1",
     "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",

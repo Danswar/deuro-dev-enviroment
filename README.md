@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# d-EURO dev environment
 
-## Getting Started
+Local UI plus a **Hardhat node** that can **fork Ethereum mainnet** (chain id `1` on `http://127.0.0.1:8545`).
 
-First, run the development server:
+## Setup
+
+1. Copy `.env.example` to `.env`.
+2. Set **`FORK_URL`** to an archive-capable mainnet HTTPS RPC (e.g. Alchemy/Infura). Same value as `RPC_URL_MAINNET` if you already use that name.
+
+## Run (fork + app)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install   # or npm install
+yarn dev:with-chain
 ```
 
-Open [http://localhost:3040](http://localhost:3040) with your browser to see the result.
+Then open [http://localhost:3040](http://localhost:3040). The Next app talks to the node via `RPC_URL` (default `http://127.0.0.1:8545`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**`yarn dev` alone** only starts the web app; without **`yarn chain`** in another process (or `dev:with-chain`), nothing serves the fork on port 8545.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run (two terminals)
 
-## Learn More
+```bash
+yarn chain    # Hardhat fork — keep running
+yarn dev      # Next on port 3040
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Wallet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add the local RPC in MetaMask (see in-app copy): mainnet chain id **1**, URL **`http://127.0.0.1:8545`**.
